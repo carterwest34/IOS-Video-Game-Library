@@ -102,12 +102,13 @@
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="LiC-G8-fVb">
                             <color key="tintColor" red="0.21227734940000001" green="0.3102037144" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
-                                <segue destination="5Hi-bc-ZwP" kind="show" id="70Q-KI-Liv"/>
+                                <action selector="addGameFromLibrary:" destination="yPb-cA-rfQ" id="tbs-Rr-n7F"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="6Cu-dy-cVY" id="bbX-xu-BwB"/>
+                        <segue destination="5Hi-bc-ZwP" kind="show" identifier="AddGameSegue" id="zwM-Kn-yfU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="29P-zS-xC1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -130,50 +131,50 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="n1g-pm-uLH">
-                                <rect key="frame" x="-6" y="76" width="387" height="515"/>
+                                <rect key="frame" x="-26" y="76" width="427" height="515"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p32-QS-SVn">
-                                        <rect key="frame" x="164.5" y="0.0" width="58.5" height="30"/>
+                                        <rect key="frame" x="184.5" y="0.0" width="58.5" height="30"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter a game title here..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gb7-Hy-wYr">
-                                        <rect key="frame" x="10" y="43" width="367" height="30"/>
+                                        <rect key="frame" x="10" y="43" width="407" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ZT-8X-oWJ">
-                                        <rect key="frame" x="122" y="86" width="143" height="30"/>
+                                        <rect key="frame" x="142" y="86" width="143" height="30"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter a game description here..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="t7K-RX-axl">
-                                        <rect key="frame" x="10" y="129" width="367" height="30"/>
+                                        <rect key="frame" x="10" y="129" width="407" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v03-xX-ES5">
-                                        <rect key="frame" x="154.5" y="172" width="78.5" height="30"/>
+                                        <rect key="frame" x="174.5" y="172" width="78.5" height="30"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="72H-33-PAA">
-                                        <rect key="frame" x="33.5" y="215" width="320" height="216"/>
+                                        <rect key="frame" x="53.5" y="215" width="320" height="216"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </pickerView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ESRB Rating:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8TK-T3-hgN">
-                                        <rect key="frame" x="117.5" y="444" width="152" height="30"/>
+                                        <rect key="frame" x="137.5" y="444" width="152" height="30"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="wRC-yl-7W9">
-                                        <rect key="frame" x="10" y="487" width="367" height="29"/>
+                                        <rect key="frame" x="30" y="487" width="367" height="29"/>
                                         <segments>
                                             <segment title="T"/>
                                             <segment title="M"/>

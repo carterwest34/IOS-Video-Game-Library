@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DZNEmptyDataSet
 
 class LibraryViewController: UIViewController {
     
@@ -20,18 +21,24 @@ class LibraryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        library.games.append(Game(title: "Red Dead Redemption 2", description: "10/10", genre: .action, rating: .mature))
+    if library.games.count == 0 {
         
-        library.games.append(Game(title: "Fallout 76", description: "Spicy", genre: .action, rating: .mature))
+        tableView.emptyDataSetSource = self
+        tableView.emptyDataSetDelegate = self
+        tableView.tableFooterView = UIView()
         
-        library.games.append(Game(title: "Black Ops 4", description: "Zombies is good", genre: .action, rating: .mature))
+    }
         
         tableView.reloadData()
+
+    }
+    
+    @IBAction func addGameFromLibrary(_ sender: Any) {
+        performSegue(withIdentifier: "AddGameSegue", sender: self)
     }
     
     func checkOut(at indexPath: IndexPath) {
         let game = self.library.games[indexPath.row]
-        
         let calendar = Calendar(identifier: .gregorian)
         let dueDate = calendar.date(byAdding: .day, value: 7, to: Date())!
         
@@ -70,6 +77,7 @@ extension LibraryViewController: UITableViewDelegate, UITableViewDataSource {
         let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { _, indexPath in
             Library.sharedInstance.games.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
+            tableView.reloadData()
         }
         
         let game = library.games[indexPath.row]
@@ -90,7 +98,9 @@ extension LibraryViewController: UITableViewDelegate, UITableViewDataSource {
         case .checkedOut:
             let checkInAction = UITableViewRowAction(style: .normal, title: "Check In") { _, indexPath in
                 self.checkIn(at: indexPath)
+                
             }
+        
             
             return [checkInAction, deleteAction]
             
@@ -105,5 +115,43 @@ extension LibraryViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.reloadData()
     }
     
+}
+
+extension LibraryViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+    
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        let text = "Empty Library"
+        
+        let attributes = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 18.0), NSAttributedString.Key.foregroundColor: UIColor.darkGray]
+        
+        return NSAttributedString(string: text, attributes: attributes)
+    
+    }
+   
+    func description(forEmptyDataSet scrollView: UIScrollView?) -> NSAttributedString? {
+        let text = "There are no games in your video game library."
+        
+        var paragraph = NSMutableParagraphStyle()
+        paragraph.lineBreakMode = .byWordWrapping
+        paragraph.alignment = .center
+        
+        let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14.0), NSAttributedString.Key.foregroundColor: UIColor.lightGray, NSAttributedString.Key.paragraphStyle: paragraph]
+        
+        return NSAttributedString(string: text, attributes: attributes)
+    }
+    
+    func buttonTitle(forEmptyDataSet scrollView: UIScrollView?, for state: UIControl.State) -> NSAttributedString? {
+        let attributes = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 17.0)]
+        
+        return NSAttributedString(string: "Add Game", attributes: attributes)
+        
+    }
+    
+    func emptyDataSet(_ scrollView: UIScrollView?, didTap button: UIButton?) {
+        performSegue(withIdentifier: "AddGameSegue", sender: self)
+    }
+    
+
+
 }
 

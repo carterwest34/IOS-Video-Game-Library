@@ -59,14 +59,18 @@ class LibraryCellTableViewCell: UITableViewCell {
         
         switch game.availability {
         case .checkedIn:
+            
             dateLabel.isHidden = true
             availabilityView.backgroundColor = .green
+            
         case .checkedOut(let date):
-            availabilityView.isHidden = false
+            
+            dateLabel.isHidden = false
             availabilityView.backgroundColor = .red
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "MM/dd/yyyy"
             dateLabel.text = dateFormatter.string(from: date)
+            
         }
     }
     
