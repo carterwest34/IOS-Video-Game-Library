@@ -1,3 +1,4 @@
+
 //
 //  LibraryCellTableViewCell.swift
 //  iOS Video Game Library
@@ -5,11 +6,10 @@
 //  Created by Carter West on 11/1/18.
 //  Copyright © 2018 Carter West. All rights reserved.
 //
-
 import UIKit
 
 class LibraryCellTableViewCell: UITableViewCell {
-
+    
     //MARK: IBOutlets
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var genreLabel: UILabel!
@@ -17,11 +17,13 @@ class LibraryCellTableViewCell: UITableViewCell {
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var availabilityView: UIView!
     
+    
+    //this function sets up the labels in our library cell
     func setup(game: Game) {
         
-        titleLabel.text = game.title
+        titleLabel.text = game.title //titleLabel pulls straight from the title given to the game
         
-        switch game.genre {
+        switch game.genre { //switch on all the genres of the enum, based on the string of the selected genre from the picker view
         case .action:
             genreLabel.text = "Action"
         case .horror:
@@ -36,8 +38,6 @@ class LibraryCellTableViewCell: UITableViewCell {
             genreLabel.text = "Puzzle"
         case .royale:
             genreLabel.text = "Battle Royale"
-        default:
-            genreLabel.text = "Action"
         }
         
         switch game.rating {
@@ -57,13 +57,13 @@ class LibraryCellTableViewCell: UITableViewCell {
             ratingLabel.text = "T"
         }
         
-        switch game.availability {
+        switch game.availability { //switch on availability. if its checked in, the background color will be green, and the date will no longer be hidden.
         case .checkedIn:
             
             dateLabel.isHidden = true
             availabilityView.backgroundColor = .green
             
-        case .checkedOut(let date):
+        case .checkedOut(let date): //if its checked out, the background color will be red, the date label will be revealed, and the text of that label is formatted and setup.
             
             dateLabel.isHidden = false
             availabilityView.backgroundColor = .red

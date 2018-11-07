@@ -100,7 +100,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Game Library" id="gAW-ta-2RS">
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="LiC-G8-fVb">
-                            <color key="tintColor" red="0.21227734940000001" green="0.3102037144" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <color key="tintColor" red="0.20160829464915814" green="0.31656706341756846" blue="0.80511253238341962" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
                                 <action selector="addGameFromLibrary:" destination="yPb-cA-rfQ" id="tbs-Rr-n7F"/>
                             </connections>
